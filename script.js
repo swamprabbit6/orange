@@ -20,7 +20,7 @@ const getWeatherForecast = (searchTerm) => {
           acc[date].push(item);
           return acc;
         }, {});
-  
+  // The following variables and code return the correct information from the API and posts it on the page
         const forecastHtml = Object.keys(forecast).map(date => {
           const items = forecast[date];
           const dateObj = new Date(items[0].dt_txt);
@@ -30,7 +30,7 @@ const getWeatherForecast = (searchTerm) => {
           const lowTemp = Math.round(Math.min(...items.map(item => item.main.temp_min)));
           const humidity = Math.round(Math.max(...items.map (item => item.main.humidity)));
           const windSpeed = Math.round(Math.max(...items.map (item => item.wind.speed)));
-  
+  //class 'day' is stylized in the CSS
           return `
             <div class="day">
               <h3>${weekday}</h3>
@@ -59,7 +59,7 @@ const getWeatherForecast = (searchTerm) => {
   };
 
 
-//The loadPage function only appends the search history when the page is refreshed
+//The loadPage function only appends the search history when the page is refreshed and no longer lets you click on the search term
 const loadPage = () => {
     // Load search history from local storage
     const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
@@ -90,7 +90,7 @@ const loadPage = () => {
   
 loadPage();
 
-// The below block comment does not properly append the local search history
+// The below commented out function does not properly append the local search history
 /* const addSearchToHistory = searchTerm => {
     // Retrieve search history from local storage
     const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
