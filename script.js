@@ -54,7 +54,7 @@ const getWeatherForecast = (searchTerm) => {
       })
       .catch(error => {
         console.error('Error fetching weather data:', error);
-        forecastContainer.innerHTML = '<p>Error fetching weather data. Please try again later.</p>';
+        //forecastContainer.innerHTML = '<p>Error fetching weather data. Please try again later.</p>';
       });
   };
 

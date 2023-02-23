@@ -1,3 +1,7 @@
+body {
+background-color: antiquewhite;
+}
+
 .day {
     display: inline-block;
     width: 150px;
