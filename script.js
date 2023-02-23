@@ -51,6 +51,8 @@ const getWeatherForecast = (searchTerm) => {
           searchHistory.push(searchTerm);
           localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
         }
+
+        loadPage()
       })
       .catch(error => {
         console.error('Error fetching weather data:', error);
@@ -80,47 +82,14 @@ const loadPage = () => {
     // Add click event listener to search history buttons
     const searchHistoryButtons = document.getElementsByClassName('search-history-btn');
     for (let i = 0; i < searchHistoryButtons.length; i++) {
-      const searchTerm = searchHistoryButtons[i].textContent;
-      searchHistoryButtons[i].addEventListener('click', () => {
-        searchInput.value = searchTerm;
-        getWeatherForecast(searchTerm);
+      searchHistoryButtons[i].addEventListener('click', (e) => {
+        console.log(e.target)
+        getWeatherForecast(e.target.textContent);
       });
     }
   };
   
 loadPage();
-
-// The below commented out function does not properly append the local search history
-/* const addSearchToHistory = searchTerm => {
-    // Retrieve search history from local storage
-    const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-  
-    // Add new search term to the search history
-    searchHistory.push(searchTerm);
-  
-    // Update search history in local storage
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-  
-    // Insert new search term into search history list on the page
-    const searchHistoryContainer = document.getElementById('search-history');
-    const searchHistoryItem = `
-      <li>
-        <button class="search-history-btn">${searchTerm}</button>
-      </li>
-    `;
-    searchHistoryContainer.insertAdjacentHTML('beforeend', searchHistoryItem);
-  
-    // Add click event listener to new search history button
-    const newButton = searchHistoryContainer.lastElementChild.querySelector('button');
-    newButton.addEventListener('click', () => {
-      searchInput.value = searchTerm;
-      getWeatherForecast(searchTerm);
-    });
-  };
-addSearchToHistory(); */
-
-getWeatherForecast(); 
-
 
 const form = document.querySelector('#search-form');
 const input = document.querySelector('#search-input');
